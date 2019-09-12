@@ -1,24 +1,69 @@
 import math
+import tkinter as tk
 
 class figura:
-    def area(self, dist):
+    def area(self, x1, y1, x2, y2):
         pass
-    def perimetro(self,dist):
+    def perimetro(self, x1, y1, x2, y2):
         pass
 
 class circulo(figura):
-    def area(self, dist):
-        return 2*3.1415*dist**2
-    def perimetro(self, dist):
-        return 2*3.1415*dist
+    def __init__ (self, x1, y1, x2, y2):
+        self.r = math.sqrt((x2-x1)**2 + (y2-y1)**2)
 
-class circulo(figura):
-    def area(self, dist):
-        return math.cos(dist)*math.sin(dist)
+    def area(self):
+        return math.pi*(self.r**2)
+    def perimetro(self):
+        return 2*math.pi*self.r
 
-    def perimetro(self, dist):
-        return (math.cos(dist) * 2) + (math.sin(dist)*2)
+class cuadrado(figura):
+    
+    def area(self, x1, y1, x2, y2):
+        l1 = abs(x2 - x1)
+        l2 = abs(y2 - y1)
+        return abs(l1 * l2)
 
-f = circulo()
+    def perimetro(self, x1, y1, x2, y2):
+        l1 = abs(x2 - x1)
+        l2 = abs(y2 - y1)
+        return abs((l1 * 2) + (l2 * 2))
 
-print(f.area(5))
+class triangulo(figura):
+    def area(self, x1, y1, x2, y2):
+        l1 = abs(x2 - x1)
+        l2 = abs(y2 - y1)
+        return abs(l1 * l2)/2
+    
+    def perimetro(self, x1, y1, x2, y2):
+        l1 = abs(x2 - x1)
+        l2 = abs(y2 - y1)
+        return abs(l1 + l2 + math.sqrt((x2-x1)**2 + (y2-y1)**2))
+
+dist = 2*math.sqrt(2)
+print(dist)
+f = circulo(0,0,1,0)
+
+print("Circulo")
+print("   area: "+str(f.area()))
+print("   perimetro: "+str(f.perimetro()))
+print()
+
+f = cuadrado()
+
+print("Cuadrado")
+print("   area: "+str(f.area(0,0,1,1)))
+print("   perimetro: "+str(f.perimetro(0,0,1,1)))
+print()
+
+f = triangulo()
+
+print("triangulo")
+print("   area: "+str(f.area(0,0,1,1)))
+print("   perimetro: "+str(f.perimetro(0,0,1,1)))
+print()
+
+#frame = tk.Tk()
+#frame.title("ventana")
+#frame.geometry('500x500')
+#frame.configure(background='black')
+#frame.mainloop()
