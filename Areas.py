@@ -1,5 +1,5 @@
 import math
-from tkinter import *
+from tkinter import Canvas, Tk
 
 class Shape:
     def __init__ (self, x1, y1, x2, y2):
@@ -26,7 +26,6 @@ class Circle(Shape):
 
     def draw(self):
         r = math.sqrt((x2-x1)**2 + (y2-y1)**2)
-        angle = math.acos(abs(x2-x1)/r)
         canvas.create_oval(x1-r, y1-r, x1+r, y1+r, outline='green')
 
 class Square(Shape):
@@ -57,10 +56,6 @@ frame = Tk()
 
 #canvas
 canvas = Canvas(frame, bg='black', width=1000, height=1000)
-
-#figuras
-line = canvas.create_line(0,0,500,500,500,0,fill='green')
-
 canvas.pack()
 
 #coordenadas
@@ -72,7 +67,7 @@ y2 = 0
 #eventos
 def hold(event):
     canvas.delete('all')
-    line = canvas.create_line(x1, y1, event.x, event.y, fill='blue')
+    canvas.create_line(x1, y1, event.x, event.y, fill='blue')
 
 def click(event):
     global x1
