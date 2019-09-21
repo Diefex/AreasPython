@@ -1,15 +1,7 @@
-def unroll(M, y):
-    if y > 0:
-        for i in M[0][0:y]: print(i)
-        for i in [e[-1] for e in M[0:y]]: print(i)
-        for i in reversed(M[y][1:y+1]): print(i)
-        for i in reversed([e[0] for e in M[1:y+1]]): print(i)
-        unroll([e[1:y] for e in M[1:y]], len(M)-3)
+def unroll(M):
+    if (len(M)>1):
+        return M.pop(0) + unroll([[e[x] for e in M] for x in reversed(range(len(M[0])))])
     else:
-        for i in M: 
-            for j in i: print(j)
+        return M[0]
 
-def unrollM(M):
-    unroll(M, len(M)-1)
-
-unrollM([l.split() for l in open("Matrix.txt").readlines()])
+print(unroll([l.split() for l in open("Matrix.txt").readlines()]))
